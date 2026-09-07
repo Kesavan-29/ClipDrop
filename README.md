@@ -20,7 +20,7 @@ Downloads are processed locally through Flask, yt-dlp, and a bundled FFmpeg runt
 ## Run
 
 ```powershell
-cd D:\Y2Local
+cd "your project folder"
 py -m pip install -r requirements.txt
 py app.py
 ```
