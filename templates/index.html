@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clipdrop | YouTube & Instagram downloader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav">
+      <a class="brand" href="/" aria-label="Clipdrop home"><span class="brand-mark">▶</span> clipdrop</a>
+      <div class="nav-tools"><span class="nav-note" data-i18n="navNote">YouTube & Instagram downloader</span><label class="language-label" for="language-select">Language</label><select id="language-select" aria-label="Website language"><option value="en">English</option><option value="es">Español</option><option value="hi">हिन्दी</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ar">العربية</option><option value="bn">বাংলা</option><option value="ta">தமிழ்</option></select></div>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> <span data-i18n="ready">ready when you are</span></div>
+      <h1><span data-i18n="keep">Keep the good</span><br><em data-i18n="parts">parts.</em></h1>
+      <p class="intro" data-i18n="intro">Download videos and audio from YouTube or Instagram Reels in a clean, offline-ready format.</p>
+      <form id="download-form" class="download-form">
+        <label for="url" data-i18n="urlLabel">YouTube or Instagram URL</label>
+        <div class="input-row">
+          <input id="url" name="url" type="url" placeholder="Paste a YouTube or Instagram Reel link" autocomplete="off" required>
+          <button type="submit" id="submit-button"><span data-i18n="fetch">Fetch video</span><span class="arrow">↗</span></button>
+        </div>
+      </form>
+      <p class="hint" data-i18n="hint">YouTube videos + Instagram Reels · up to 4K · MP4 or audio-only</p>
+    </section>
+
+    <section id="quality-panel" class="quality-panel" hidden>
+      <div class="quality-heading">
+        <img id="video-thumbnail" class="video-thumbnail" alt="Video thumbnail">
+        <div><p class="result-kicker" data-i18n="videoFound">Video found</p><h2 id="video-title"></h2></div><span id="video-duration"></span>
+      </div>
+      <div class="quality-selectors"><div><label for="quality-select" data-i18n="videoQuality">Video quality</label><select id="quality-select"></select></div><div><label for="audio-format-select" data-i18n="audioQuality">Audio quality</label><select id="audio-format-select" aria-label="Audio quality"><option value="m4a">Highest quality · M4A</option><option value="mp3">Highest quality · MP3</option></select></div></div>
+      <div class="quality-row"><button type="button" id="download-button"><span data-i18n="downloadAudio">Download video with audio</span> <span>↓</span></button><button type="button" id="audio-only-button" class="secondary-button"><span data-i18n="audioOnly">Audio only</span> <span>↓</span></button></div>
+    </section>
+
+    <section id="progress-panel" class="progress-panel" hidden>
+      <div class="status-line"><span id="status-label" data-i18n="preparing">Preparing download</span><span id="percent">0%</span></div>
+      <div id="video-stream-progress" class="stream-progress"><div class="stream-label"><span data-i18n="videoDownload">Video download</span><span id="video-percent">0%</span></div><div class="progress-line"><div class="progress-track"><div id="video-progress-bar" class="progress-bar"></div></div><button type="button" id="video-pause-button" data-stream="video" class="pause-button" title="Pause or resume video download">Pause</button></div><div id="video-size" class="stream-size">0 B / calculating...</div></div>
+      <div id="audio-stream-progress" class="stream-progress" hidden><div class="stream-label"><span data-i18n="audioDownload">Audio download</span><span id="audio-percent">0%</span></div><div class="progress-line"><div class="progress-track"><div id="audio-progress-bar" class="progress-bar audio-bar"></div></div><button type="button" id="audio-pause-button" data-stream="audio" class="pause-button">Pause</button></div><div id="audio-size" class="stream-size">0 B / calculating...</div></div>
+      <div class="detail-line"><span id="speed"></span><span id="eta"></span></div>
+      <button type="button" id="cancel-button" class="cancel-button" data-i18n="cancel">Cancel download</button>
+      <a id="download-link" class="download-link completion-link" href="#" hidden><span data-i18n="save">Save MP4 locally</span> <span>↓</span></a>
+    </section>
+
+    <p id="error-message" class="error-message" role="alert" hidden></p>
+    <footer><span data-i18n="permission">For videos you have permission to download.</span><span data-i18n="local">Local processing · nothing uploaded</span></footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js', v='21') }}"></script>
+</body>
+</html>
